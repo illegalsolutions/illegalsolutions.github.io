@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÇAY SALONU</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ff3333;
+            --primary-dark: #cc0000;
+            --text: #ffffff;
+            --background: #121212;
+            --card-bg: #1e1e1e;
+            --navbar-bg: rgba(18, 18, 18, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text);
+            background: none;
+            border: none;
+        }
+
+        .menu-container {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-inline: 1rem;
+        }
+
+        .category {
+            margin-bottom: 4rem;
+            padding-top: 1rem;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: var(--card-bg);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navbar-bg);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .menu-container {
+                padding-top: 70px;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">AKYOL ÇAY SALONU</a>
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="nav-links">
+            <a href="#sicak-icecekler">Sıcak İçecekler</a>
+            <a href="#soguk-icecekler">Soğuk İçecekler</a>
+            <a href="#yiyecekler">Yiyecekler</a>
+            <a href="#tatlilar">Tatlılar</a>
+        </div>
+    </nav>
+
+    <div class="menu-container">
+        <section id="sicak-icecekler" class="category" data-aos="fade-up">
+            <h2 class="category-title">Sıcak İçecekler</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574" class="product-image" alt="Türk Kahvesi">
+                    <div class="product-info">
+                        <h3 class="product-name">Türk Kahvesi</h3>
+                        <p class="product-price">₺35</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1571066811602-716837d681de" class="product-image" alt="Çay">
+                    <div class="product-info">
+                        <h3 class="product-name">Demlik Çay</h3>
+                        <p class="product-price">₺60</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1610889556528-9a770e32642f" class="product-image" alt="Sahlep">
+                    <div class="product-info">
+                        <h3 class="product-name">Sahlep</h3>
+                        <p class="product-price">₺45</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="soguk-icecekler" class="category" data-aos="fade-up">
+            <h2 class="category-title">Soğuk İçecekler</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd" class="product-image" alt="Limonata">
+                    <div class="product-info">
+                        <h3 class="product-name">Ev Yapımı Limonata</h3>
+                        <p class="product-price">₺40</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d" class="product-image" alt="Soğuk Kahve">
+                    <div class="product-info">
+                        <h3 class="product-name">Ice Latte</h3>
+                        <p class="product-price">₺55</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1619158401201-8fa932695178" class="product-image" alt="Milkshake">
+                    <div class="product-info">
+                        <h3 class="product-name">Çilekli Milkshake</h3>
+                        <p class="product-price">₺50</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="yiyecekler" class="category" data-aos="fade-up">
+            <h2 class="category-title">Yiyecekler</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af" class="product-image" alt="Tost">
+                    <div class="product-info">
+                        <h3 class="product-name">Karışık Tost</h3>
+                        <p class="product-price">₺65</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1606850246029-dd00bd5a0d5f" class="product-image" alt="Omlet">
+                    <div class="product-info">
+                        <h3 class="product-name">Mantarlı Omlet</h3>
+                        <p class="product-price">₺70</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" class="product-image" alt="Pizza">
+                    <div class="product-info">
+                        <h3 class="product-name">Karışık Pizza</h3>
+                        <p class="product-price">₺120</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tatlilar" class="category" data-aos="fade-up">
+            <h2 class="category-title">Tatlılar</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814" class="product-image" alt="Cheesecake">
+                    <div class="product-info">
+                        <h3 class="product-name">Frambuazlı Cheesecake</h3>
+                        <p class="product-price">₺75</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307" class="product-image" alt="Tiramisu">
+                    <div class="product-info">
+                        <h3 class="product-name">Tiramisu</h3>
+                        <p class="product-price">₺70</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1616690710400-a16d146927c5" class="product-image" alt="Brownie">
+                    <div class="product-info">
+                        <h3 class="product-name">Sıcak Brownie</h3>
+                        <p class="product-price">₺65</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p class="copyright">© 2024 AKYOL ÇAY SALONU. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true,
+            disable: 'mobile' // Mobil cihazlarda animasyonları devre dışı bırak
+        });
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link on mobile
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !hamburger.contains(e.target) && 
+                !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
